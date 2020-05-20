@@ -46,9 +46,9 @@ namespace ACWA.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly("ACWA.Domain")));
 
-            services.AddDbContext<AuctionContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Auction"),
-                b => b.MigrationsAssembly("ACWA.Domain")));
+            //services.AddDbContext<AuctionContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("Auction"),
+            //    b => b.MigrationsAssembly("ACWA.Domain")));
 
             services.AddScoped<ACWAContext>();
 
