@@ -25,5 +25,6 @@ export class NavbarComponent implements OnInit {
   public signOutOnClick(): void {
     this.accountService.SignOut();
     this.router.navigate(['/account']);
+    window.location.reload();
   }
 }

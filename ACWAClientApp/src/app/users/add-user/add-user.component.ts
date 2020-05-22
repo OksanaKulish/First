@@ -57,7 +57,7 @@ export class AddUserComponent implements OnInit {
   public onSubmitUserForm(): void {
     if (!this.userForm.invalid) {
       if (this.user == null) {
-        this.userForm.value['PhoneNumber'] = '+375' + this.userForm.value['PhoneNumber'];
+        this.userForm.value['PhoneNumber'] = '+380' + this.userForm.value['PhoneNumber'];
         this.userService.AddUser(this.userForm.value);
         this.router.navigate(['/users']);
       } else {
@@ -66,7 +66,7 @@ export class AddUserComponent implements OnInit {
           FirstName: this.userForm.value['FirstName'],
           LastName: this.userForm.value['LastName'],
           Login: this.userForm.value['Login'],
-          PhoneNumber: '+375' + this.userForm.value['PhoneNumber']
+          PhoneNumber: '+380' + this.userForm.value['PhoneNumber']
         };
         this.userService.UpdateUser(model);
         this.router.navigate(['/users']);
