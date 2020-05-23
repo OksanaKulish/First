@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.setTitle('Sign Up - ACWA');
+    this.setTitle('Sign Up - ACWC');
   }
 
   public onSubmitSignUpForm(): void {
