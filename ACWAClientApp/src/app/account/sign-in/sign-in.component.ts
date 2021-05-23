@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.setTitle('Sign in - ACWA');
+    this.setTitle('Sign in - AcWc');
   }
 
   public onSubmitSignInForm(): void {

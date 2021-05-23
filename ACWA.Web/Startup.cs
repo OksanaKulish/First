@@ -17,9 +17,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace ACWA.Web
@@ -118,6 +120,7 @@ namespace ACWA.Web
 
             // Services
             services.AddTransient<IUserService, UserService>();
+            ConfigureSwagger(services);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -148,7 +151,34 @@ namespace ACWA.Web
             // For Angular client
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
 
+            var swaggerRoutePrefix = Configuration["Swagger:RoutePrefix"];
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Demo API");
+                options.RoutePrefix = swaggerRoutePrefix.Trim(char.Parse("/"));
+            });
+
             app.UseMvc();
+        }
+
+        private static void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(swagger =>
+            {
+                swagger.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Swagger Service API",
+                        Version = "v1"
+                    });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                swagger.IncludeXmlComments(xmlPath);
+            });
         }
     }
 }

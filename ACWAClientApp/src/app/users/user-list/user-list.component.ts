@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(x => this.page = x['page']);
     this.getUsers(this.pageSize, this.page);
-    this.setTitle('List of users - ACWA');
+    this.setTitle('List of users - AcWc');
   }
 
   public onClickRow(userId: number): void {

@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
         this.returnUrl = x['returnUrl'];
     });
     this.getUser(this.userId);
-    this.setTitle('About - ACWA');
+    this.setTitle('About - AcWc');
   }
 
   public openDeleteModal(userId: string, userFullName: string): void {
